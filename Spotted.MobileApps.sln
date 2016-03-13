@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotted.Core", "Spotted.Core.csproj", "{E8B73224-39E8-4290-9693-14D70AEB3CE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotted.UWP", "..\Spotted.UWP\Spotted.UWP.csproj", "{DB946E14-2439-49DB-B2C9-BD75C9A8BEA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotted.UWP", "Spotted.UWP\Spotted.UWP.csproj", "{DB946E14-2439-49DB-B2C9-BD75C9A8BEA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
