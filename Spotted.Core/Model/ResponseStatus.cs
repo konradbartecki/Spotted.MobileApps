@@ -10,6 +10,6 @@ namespace Spotted.Core.Model
 {
     public class ResponseStatus
     {
-        public CustomErrors status { get; set; }
+        public int status { get; set; }
     }
 }

@@ -95,8 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Setup.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\UWPNotifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +109,10 @@
     <None Include="Spotted.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Spotted\bg.jpg" />
+    <Content Include="Assets\Spotted\ikona2.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -122,18 +127,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spotted.Core.csproj">
+    <ProjectReference Include="..\Spotted.Assets\Spotted.Assets.csproj">
+      <Project>{19bffe88-7e21-4e93-be2f-9bc3319a9e53}</Project>
+      <Name>Spotted.Assets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spotted.Core\Spotted.Core.csproj">
       <Project>{e8b73224-39e8-4290-9693-14d70aeb3ce2}</Project>
       <Name>Spotted.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Spotted.Localization\Spotted.Localization.csproj">
+      <Project>{ec2b4899-81da-4f60-bf6c-36548d09c7d0}</Project>
+      <Name>Spotted.Localization</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MvvmCross.WindowsUWP.Views;
 using Spotted.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -24,10 +25,10 @@ namespace Spotted.UWP
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class LoginView : MvxWindowsPage
     {
         private bool RegisterModeEnabled = false;
-        public MainPage()
+        public LoginView()
         {
             this.InitializeComponent();
         }
@@ -36,12 +37,14 @@ namespace Spotted.UWP
         {
             if (RegisterModeEnabled)
             {
+                RegisterPanel.Visibility = Visibility.Collapsed;
                 RegisterModeEnabled = false;
                 Login.Content = "Login";
                 SwitchAction.Content = "Sign up instead";
             }
             else
             {
+                RegisterPanel.Visibility = Visibility.Visible;
                 RegisterModeEnabled = true;
                 Login.Content = "Register";
                 SwitchAction.Content = "Login instead";

@@ -4,5 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Spotted.UWP"
     RequestedTheme="Light">
+    <Application.Resources>
+        <Color x:Key="GreenAction">#FF33AE4A</Color>
+    </Application.Resources>
 
 </Application>

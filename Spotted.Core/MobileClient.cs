@@ -1,29 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using Newtonsoft.Json;
 using Spotted.Core.Model;
 using Spotted.Core.Model.Enums;
 using Spotted.Core.Model.Interfaces;
+using Spotted.Core.Model.Responses;
 
 namespace Spotted.Core
 {
     public class MobileClient : HttpClient
     {
-        public string Token { get; set; }
+        public string Token
+        {
+            get { return _token; }
+            set { SetToken(value); }
+        }
+
+        private void SetToken(string value)
+        {
+            _token = value;
+            this.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", value);
+        }
 
         private string apiVersion = Config.MobileService.ApiVersion;
 
         private string route = "api/{0}/{1}/{2}";
 
-        private string UserController = "user";
+        private string UserController = "users";
 
         private IUserNotifier Notifier;
+        private string _token;
 
 
         public MobileClient(string address, IUserNotifier notifier)
@@ -40,19 +54,22 @@ namespace Spotted.Core
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var status = JsonConvert.DeserializeObject<ResponseStatus>(content);
+                Debug.WriteLine("Status {0}", status);
                 //Notifier?.NotifyError(GetMessage(status.status));
             }
             return response;
         }
 
-        public async Task<object> LoginAsync(string email, string password)
+        public async Task<string> LoginAsync(string email, string password)
         {
              var response = await this.PostFormAsync(Url(UserController, "login"), new Dictionary<string, string>()
             {
                  ["email"] = email,
                  ["password"] = password
             });
-            return await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
+            var responseObject = JsonConvert.DeserializeObject<TokenResponse>(json);
+            return responseObject.Token;
         }
 
         public async Task<object> RegisterAsync()
