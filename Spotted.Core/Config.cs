@@ -8,7 +8,10 @@ namespace Spotted.Core
 {
     public static class Config
     {
-        public static MobileClient Client;
+        public static Core.MobileService GetMobileService()
+        {
+            return new Core.MobileService(MobileService.Address);
+        }
         public static class MobileService
         {
             public static string Address = "http://46.101.158.111:3000/";

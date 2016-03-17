@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Spotted.Core.Model.Interfaces
 {
-    public interface IUserNotifier
+    interface IDtoConvertable
     {
-        void NotifyError(string Title, string Error);
-        void NotifyError(string Error);
+        object AsDto();
     }
 }

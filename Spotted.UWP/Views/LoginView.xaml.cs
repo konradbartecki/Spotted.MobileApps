@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MvvmCross.WindowsUWP.Views;
 using Spotted.Core;
+using Spotted.Core.Model.Exceptions;
+using Spotted.Core.Model.ServiceRequests;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -66,16 +68,28 @@ namespace Spotted.UWP
                 Login.IsEnabled = false;
                 ProgressRing.IsActive = true;
 
-                object res = null;
+                using (var service = Config.GetMobileService())
+                {
 
-                if (RegisterModeEnabled == false)
-                    res = await Config.Client.LoginAsync(EmailBox.Text, PasswordBox.Password);
-                else
-                    res = await Config.Client.RegisterAsync();
+                    if (RegisterModeEnabled == false)
+                    {
+                        var token = await service.Login(new LoginRequest()
+                        {
+                            Email = EmailBox.Text,
+                            Password = PasswordBox.Password
+                        });
+                        service.AccessToken = token;
+                        await new MessageDialog(service.AccessToken).ShowAsync();
+                    }
+                    else
+                    {
+                        
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (ModelInvalidException ex)
             {
-                await new MessageDialog(ex.Message).ShowAsync();
+                await new MessageDialog(ex.ToString()).ShowAsync();
             }
             finally
             {

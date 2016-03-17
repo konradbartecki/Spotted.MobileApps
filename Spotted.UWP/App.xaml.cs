@@ -84,7 +84,7 @@ namespace Spotted.UWP
                 start.Start();
             }
 
-            Config.Client = new MobileClient(Config.MobileService.Address, new UWPNotifier());
+            //Config.Client = new MobileClient(Config.MobileService.Address, new UWPNotifier());
             // Ensure the current window is active
             Window.Current.Activate();
         }

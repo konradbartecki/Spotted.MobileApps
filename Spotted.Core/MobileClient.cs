@@ -1,105 +1,141 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Spotted.Core.Extensions;
 using Spotted.Core.Model;
 using Spotted.Core.Model.Enums;
 using Spotted.Core.Model.Interfaces;
 using Spotted.Core.Model.Responses;
+using Spotted.Core.Model.ServiceRequests;
 
 namespace Spotted.Core
 {
-    public class MobileClient : HttpClient
+    public class MobileService : IDisposable
     {
-        public string Token
+        internal static class Names
         {
-            get { return _token; }
-            set { SetToken(value); }
-        }
-
-        private void SetToken(string value)
-        {
-            _token = value;
-            this.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", value);
-        }
-
-        private string apiVersion = Config.MobileService.ApiVersion;
-
-        private string route = "api/{0}/{1}/{2}";
-
-        private string UserController = "users";
-
-        private IUserNotifier Notifier;
-        private string _token;
-
-
-        public MobileClient(string address, IUserNotifier notifier)
-        {
-            this.BaseAddress = new Uri(address);
-            this.Notifier = notifier;
-
-        }
-
-        public override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            var response = await base.SendAsync(request, cancellationToken);
-            if (!response.IsSuccessStatusCode)
+            internal static class AuthController
             {
-                var content = await response.Content.ReadAsStringAsync();
-                var status = JsonConvert.DeserializeObject<ResponseStatus>(content);
-                Debug.WriteLine("Status {0}", status);
-                //Notifier?.NotifyError(GetMessage(status.status));
+                internal static readonly string Name = "auth";
+                internal static readonly string LoginAction = "signin";
+                internal static readonly string RegisterAction = "signup";
             }
-            return response;
-        }
 
-        public async Task<string> LoginAsync(string email, string password)
-        {
-             var response = await this.PostFormAsync(Url(UserController, "login"), new Dictionary<string, string>()
+            internal static class UsersController
             {
-                 ["email"] = email,
-                 ["password"] = password
-            });
-            var json = await response.Content.ReadAsStringAsync();
-            var responseObject = JsonConvert.DeserializeObject<TokenResponse>(json);
-            return responseObject.Token;
+                internal static readonly string Name = "users";
+            }
+
+            internal static class PostsController
+            {
+                
+            }
         }
 
-        public async Task<object> RegisterAsync()
+        private readonly string _address;
+        private HttpClient _client;
+        private static string _accessToken;
+        private HttpClient Client => _client ?? (_client = CreateClient());
+
+        public string AccessToken
         {
-            return null;
+            get { return _accessToken; }
+            set
+            {
+                _accessToken = value;
+                SetClientAuthentication(Client, value);
+            }
+        }
+
+        public MobileService(string address)
+        {
+            _address = address;
+        }
+
+        private HttpClient CreateClient()
+        {
+            var client = new HttpClient() { BaseAddress = new Uri(_address) };
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            SetClientAuthentication(client, AccessToken);
+            return client;
+        }
+
+        private void SetClientAuthentication(HttpClient client, string accessToken)
+        {
+            if (accessToken != null)
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            }
+            else
+            {
+                client.DefaultRequestHeaders.Authorization = null;
+            }
         }
 
         private string Url(string controller, string action)
         {
-            return String.Format(route, apiVersion, controller, action);
+            return string.Format("/api/v1/{0}/{1}", controller, action);
         }
 
-        private async Task<HttpResponseMessage> PostFormAsync(string url, Dictionary<string, string> formData)
+
+
+        /// <summary>
+        /// Logs user in using email and password
+        /// </summary>
+        /// <returns>Bearer token</returns>
+        public async Task<string> Login(LoginRequest request)
         {
-            using (var content = new FormUrlEncodedContent(formData))
+            var response = await PostAsync<TokenResponse>(Url(Names.AuthController.Name, Names.AuthController.LoginAction), request);
+            return response.Token;
+        }
+    
+        public async Task<T> GetAsync<T>(string url)
+        {
+            var response = await Client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadAsAsync<T>();
+            else
+                throw await ExceptionHandler.FromResponseAsync(response);
+        }
+
+        public async Task<T> PostAsync<T>(string url, object o)
+        {
+            if (o is IValidable)
             {
-                return await this.PostAsync(url, content);
+                var ov = (IValidable) o;
+                ov.CheckValidity();
             }
-        }
-
-        private string GetMessage(CustomErrors error)
-        {
-            var errorToString = new Dictionary<CustomErrors, string>()
+            if (o is IDtoConvertable)
             {
-                [CustomErrors.EmailExists] = "Email already assigned to an account",
-                [CustomErrors.IncorrectEmailOrPassword] = "Email or password does not match"
-            };
+                var ov = (IDtoConvertable) o;
+                o = ov.AsDto();
+            }
+            var json = JsonConvert.SerializeObject(o);
 
-            return errorToString[error];
+            var response = await Client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
+
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadAsAsync<T>();
+            else
+                throw await ExceptionHandler.FromResponseAsync(response);
         }
 
+        public void Dispose()
+        {
+            Client?.Dispose();
+        }
     }
 }
