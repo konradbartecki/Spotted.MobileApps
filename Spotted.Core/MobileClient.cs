@@ -15,6 +15,7 @@ using Spotted.Core.Extensions;
 using Spotted.Core.Model;
 using Spotted.Core.Model.Enums;
 using Spotted.Core.Model.Interfaces;
+using Spotted.Core.Model.Requests;
 using Spotted.Core.Model.Responses;
 using Spotted.Core.Model.ServiceRequests;
 
@@ -100,8 +101,13 @@ namespace Spotted.Core
             var response = await PostAsync<TokenResponse>(Url(Names.AuthController.Name, Names.AuthController.LoginAction), request);
             return response.Token;
         }
+
+        public async Task Register(RegisterRequest request)
+        {
+            await PostAsync(Url(Names.AuthController.Name, Names.AuthController.RegisterAction), request);
+        }
     
-        public async Task<T> GetAsync<T>(string url)
+        private async Task<T> GetAsync<T>(string url)
         {
             var response = await Client.GetAsync(url);
 
@@ -111,13 +117,13 @@ namespace Spotted.Core
                 throw await ExceptionHandler.FromResponseAsync(response);
         }
 
-        public async Task<T> PostAsync<T>(string url, object o)
+        private async Task<T> PostAsync<T>(string url, object o)
         {
-            if (o is IValidable)
-            {
-                var ov = (IValidable) o;
-                ov.CheckValidity();
-            }
+            //if (o is IValidable)
+            //{
+            //    var ov = (IValidable) o;
+            //    ov.CheckValidity();
+            //}
             if (o is IDtoConvertable)
             {
                 var ov = (IDtoConvertable) o;
@@ -126,10 +132,23 @@ namespace Spotted.Core
             var json = JsonConvert.SerializeObject(o);
 
             var response = await Client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
-
             if (response.IsSuccessStatusCode)
                 return await response.Content.ReadAsAsync<T>();
             else
+                throw await ExceptionHandler.FromResponseAsync(response);
+        }
+
+        private async Task PostAsync(string url, object o)
+        {
+            if (o is IDtoConvertable)
+            {
+                var ov = (IDtoConvertable)o;
+                o = ov.AsDto();
+            }
+            var json = JsonConvert.SerializeObject(o);
+
+            var response = await Client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
+            if (!response.IsSuccessStatusCode)
                 throw await ExceptionHandler.FromResponseAsync(response);
         }
 

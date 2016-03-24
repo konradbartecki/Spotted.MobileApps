@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Image Grid.RowSpan="2" Source="ms-appx:///Assets/Spotted/bg.jpg" Margin="0" MinHeight="150" Stretch="UniformToFill" Opacity="0.4" RenderTransformOrigin="0.5,0.5" NineGrid="0"/>
         <Grid Grid.Row="0">
-            <Image Source="ms-appx:///Assets/Spotted/ikona2.png" Margin="0,100,0,0" Width="220" Height="220" MaxWidth="220" MaxHeight="217" Opacity="0.95" RenderTransformOrigin="0.5,0.5"/>
+            <Image Source="ms-appx:///Assets/Spotted/ikona2.png" Margin="0,100,0,0" Width="220" Height="220" MaxWidth="220" MaxHeight="217" Opacity="0.95" RenderTransformOrigin="0.5,0.5" Tapped="Image_Tapped"/>
             <Grid Height="100" VerticalAlignment="Top" Background="#7F000000" Visibility="Collapsed">
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="15" FontFamily="Segoe UI Light" FontSize="34.667">
                 	<Run Text="Spotted"/>

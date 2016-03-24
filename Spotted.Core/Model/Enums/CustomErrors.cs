@@ -8,7 +8,9 @@ namespace Spotted.Core.Model.Enums
 {
     public enum CustomErrors
     {
-        IncorrectEmailOrPassword = 401,
-        EmailExists = 409,
+        TokenInvalid = 401,
+        ModelInvalid = 1400,
+        LoginFailed = 1401,
+        EmailExists = 1402,           
     }
 }

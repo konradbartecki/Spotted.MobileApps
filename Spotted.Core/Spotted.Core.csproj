@@ -45,10 +45,13 @@
     <Compile Include="MobileClient.cs" />
     <Compile Include="Model\Enums\CustomErrors.cs" />
     <Compile Include="Model\Enums\ModelError.cs" />
+    <Compile Include="Model\Exceptions\LoginFailedException.cs" />
+    <Compile Include="Model\Exceptions\MobileServiceException.cs" />
     <Compile Include="Model\Exceptions\ModelInvalidException.cs" />
     <Compile Include="Model\Interfaces\IDtoConvertable.cs" />
     <Compile Include="Model\Interfaces\IValidable.cs" />
     <Compile Include="Model\Requests\RegisterRequest.cs" />
+    <Compile Include="Model\Responses\StatusResponse.cs" />
     <Compile Include="Model\Responses\TokenResponse.cs" />
     <Compile Include="Model\Requests\LoginRequest.cs" />
     <Compile Include="Model\User.cs" />

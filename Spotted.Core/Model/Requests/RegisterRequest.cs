@@ -8,7 +8,7 @@ using Spotted.Core.Validator;
 
 namespace Spotted.Core.Model.Requests
 {
-    public class RegisterRequest : IValidable
+    public class RegisterRequest : IValidable, IDtoConvertable
     {
         public string Email { get; set; }
         public string Password { get; set; }
@@ -23,13 +23,13 @@ namespace Spotted.Core.Model.Requests
             CheckModel.RegisterPassword(Password, ReenteredPassword);
         }
 
-        public RegisterRequestDTO AsDto()
+        object IDtoConvertable.AsDto()
         {
             return new RegisterRequestDTO()
             {
                 email = this.Email,
                 password = this.Password,
-                sex = (int) this.Sex
+                sex = (int)this.Sex
             };
         }
 

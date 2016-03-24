@@ -19,6 +19,7 @@ using MvvmCross.WindowsUWP.Views;
 using Spotted.Core;
 using Spotted.Core.Model.Exceptions;
 using Spotted.Core.Model.ServiceRequests;
+using Spotted.UWP.Views;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -111,6 +112,11 @@ namespace Spotted.UWP
         {
             if (e.Key == VirtualKey.Enter)
                 PasswordBox.Focus(FocusState.Keyboard);
+        }
+
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (MainView));
         }
     }
 }
