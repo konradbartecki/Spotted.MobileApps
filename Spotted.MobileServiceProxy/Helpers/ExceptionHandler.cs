@@ -8,7 +8,7 @@ using Spotted.Model.Responses;
 
 namespace Spotted.MobileServiceProxy.Helpers
 {
-    public static class ExceptionHandler
+    internal static class ExceptionHandler
     {
         public static async Task<Exception> FromResponseAsync(HttpResponseMessage response)
         {

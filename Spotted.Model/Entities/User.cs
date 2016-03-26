@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Spotted.Model.Enums;
 
 namespace Spotted.Model.Entities
 {
@@ -8,18 +9,6 @@ namespace Spotted.Model.Entities
         public string Id { get; set; }
         [JsonProperty("email")]
         public string Email { get; set; }
-        [JsonProperty("token")]
-        public string AccessToken { get; set; }
-
-        public Sex Type { get; set; }
-
-
-        public enum Sex
-        {
-            Male,
-            Female,
-            Unknown
-        }
-
+        public Gender Gender { get; set; }
     }
 }

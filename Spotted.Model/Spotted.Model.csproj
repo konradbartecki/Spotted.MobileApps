@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Enums\ApiErrors.cs" />
+    <Compile Include="Enums\Gender.cs" />
     <Compile Include="ModelValidator.cs" />
     <Compile Include="Enums\ModelError.cs" />
     <Compile Include="Exceptions\ModelInvalidException.cs" />

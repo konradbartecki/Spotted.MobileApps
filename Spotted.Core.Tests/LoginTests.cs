@@ -36,7 +36,7 @@ namespace Spotted.Core.Tests
                 Trace.WriteLine("Account created");
                 Trace.WriteLine(acc.Email);
                 Trace.WriteLine(acc.Password);
-                Trace.WriteLine(acc.Sex);
+                Trace.WriteLine(acc.Gender);
 
                 var token = await service.Login(new LoginRequest()
                 {

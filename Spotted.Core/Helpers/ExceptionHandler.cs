@@ -9,7 +9,7 @@ using Spotted.Core.Services;
 
 namespace Spotted.Core.Helpers
 {
-    public static class UserExceptionHandler
+    internal static class ExceptionHandler
     {
         public static void Handle(Exception ex)
         {

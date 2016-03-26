@@ -1,4 +1,5 @@
 ﻿using Spotted.Model.Entities;
+using Spotted.Model.Enums;
 using Spotted.Model.Interfaces;
 
 namespace Spotted.Model.Requests
@@ -8,7 +9,7 @@ namespace Spotted.Model.Requests
         public string Email { get; set; }
         public string Password { get; set; }
         public string ReenteredPassword { get; set; }
-        public User.Sex Sex { get; set; }
+        public Gender Gender { get; set; }
 
         public void CheckValidity()
         {
@@ -24,7 +25,7 @@ namespace Spotted.Model.Requests
             {
                 email = this.Email,
                 password = this.Password,
-                sex = (int)this.Sex
+                sex = (int)this.Gender
             };
         }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spotted.Model.Entities;
+using Spotted.Model.Enums;
 using Spotted.Model.Requests;
 
 namespace Spotted.Core.Tests
@@ -21,7 +22,7 @@ namespace Spotted.Core.Tests
                 Email = Guid.NewGuid() + "@outlook.com",
                 Password = password,
                 ReenteredPassword = password,
-                Sex = (User.Sex)r.Next(2)
+                Gender = (Gender)r.Next(2)
             };
         }
 

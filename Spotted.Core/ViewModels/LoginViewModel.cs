@@ -7,6 +7,7 @@ using MvvmCross.Core.ViewModels;
 using Spotted.Core.Helpers;
 using Spotted.Model.Entities;
 using Spotted.Model.Requests;
+using Spotted.Model.Enums;
 
 namespace Spotted.Core.ViewModels
 {
@@ -15,7 +16,7 @@ namespace Spotted.Core.ViewModels
         private string _email;
         private string _password;
         private string _reenteredPassword;
-        private User.Sex _selectedSex;
+        private Gender _selectedGender;
 
         #region FullProps
         public string Email
@@ -45,13 +46,13 @@ namespace Spotted.Core.ViewModels
                 RaisePropertyChanged(() => ReenteredPassword);
             }
         }
-        public User.Sex SelectedSex
+        public Gender SelectedGender
         {
-            get { return _selectedSex; }
+            get { return _selectedGender; }
             set
             {
-                _selectedSex = value;
-                RaisePropertyChanged(() => SelectedSex);
+                _selectedGender = value;
+                RaisePropertyChanged(() => SelectedGender);
             }
         }
 
@@ -75,7 +76,7 @@ namespace Spotted.Core.ViewModels
             }
             catch (Exception e)
             {
-                UserExceptionHandler.Handle(e);
+                ExceptionHandler.Handle(e);
             }
         }
     }
