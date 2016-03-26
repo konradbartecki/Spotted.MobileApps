@@ -2,6 +2,7 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross": "4.0.0",
+    "MvvmCross.Plugin.Visibility": "4.1.0",
     "MvvmCross.StarterPack": "4.0.0"
   },
   "frameworks": {

@@ -29,20 +29,7 @@ namespace Spotted.UWP.Views
 
         private void SwitchAction_Click(object sender, RoutedEventArgs e)
         {
-            if (RegisterModeEnabled)
-            {
-                RegisterPanel.Visibility = Visibility.Collapsed;
-                RegisterModeEnabled = false;
-                Login.Content = "Login";
-                SwitchAction.Content = "Sign up instead";
-            }
-            else
-            {
-                RegisterPanel.Visibility = Visibility.Visible;
-                RegisterModeEnabled = true;
-                Login.Content = "Register";
-                SwitchAction.Content = "Login instead";
-            }
+            ViewModel.SwitchMode();
         }
 
         private async void Login_Click(object sender, RoutedEventArgs e)
@@ -60,7 +47,7 @@ namespace Spotted.UWP.Views
                 Login.IsEnabled = false;
                 ProgressRing.IsActive = true;
 
-                await ViewModel.LoginAsync();
+                await ViewModel.MainActionAsync();
             }
             finally
             {

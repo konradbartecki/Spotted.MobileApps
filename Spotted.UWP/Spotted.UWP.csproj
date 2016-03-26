@@ -98,6 +98,7 @@
     <Compile Include="Controls\NavBarControl.xaml.cs">
       <DependentUpon>NavBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\MvxVisibilityConverter.cs" />
     <Compile Include="Services\UwpUserNotificationService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\FeedView.xaml.cs">

@@ -10,6 +10,12 @@ namespace Spotted.MobileServiceProxy.Exceptions
         {
             this.StatusCode = response.StatusCode;
         }
+
+        public MobileServiceException(string message) : base(message)
+        {
+            this.StatusCode = HttpStatusCode.InternalServerError;
+        }
+
         public HttpStatusCode StatusCode { get; set; }
     }
 }

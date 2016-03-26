@@ -19,7 +19,7 @@ namespace Spotted.MobileServiceProxy.Helpers
                 //case CustomErrors.TokenInvalid:
                 //    break;
                 case ApiErrors.LoginFailed:
-                    return new LoginFailedException(response);
+                    return new LoginFailedException(errorResponse.status.ToString());
                 //case CustomErrors.EmailExists:
                 //    break;
                 default:
