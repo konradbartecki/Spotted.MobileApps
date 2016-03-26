@@ -8,9 +8,9 @@ namespace Spotted.Core
 {
     public static class Config
     {
-        public static Core.MobileService GetMobileService()
+        public static MobileServiceProxy.MobileService GetMobileService()
         {
-            return new Core.MobileService(MobileService.Address);
+            return new MobileServiceProxy.MobileService(MobileService.Address);
         }
         public static class MobileService
         {

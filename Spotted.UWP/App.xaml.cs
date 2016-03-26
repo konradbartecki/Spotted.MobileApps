@@ -17,7 +17,6 @@ using Windows.UI.Xaml.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using Spotted.Core;
-using Spotted.UWP.Model;
 
 namespace Spotted.UWP
 {

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spotted.Core.Model;
-using Spotted.Core.Model.Requests;
+using Spotted.Model.Entities;
+using Spotted.Model.Requests;
 
 namespace Spotted.Core.Tests
 {

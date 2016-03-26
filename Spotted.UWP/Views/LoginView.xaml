@@ -1,5 +1,5 @@
 ﻿<views:MvxWindowsPage
-    x:Class="Spotted.UWP.LoginView"
+    x:Class="Spotted.UWP.Views.LoginView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Spotted.UWP"
@@ -34,7 +34,7 @@
                         <AddDeleteThemeTransition />
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
-                <TextBox x:Name="EmailBox"  PlaceholderText="E-mail address" Margin="0,0,0,9" InputScope="EmailSmtpAddress" KeyUp="EmailBox_OnKeyUp"/>
+                <TextBox x:Name="EmailBox" Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="E-mail address" Margin="0,0,0,9" InputScope="EmailSmtpAddress" KeyUp="EmailBox_OnKeyUp"/>
                 <PasswordBox x:Name="PasswordBox" PlaceholderText="Password" Margin="0,0,0,9" KeyUp="PasswordBox_KeyUp"/>
                 <StackPanel x:Name="RegisterPanel" Visibility="Collapsed">
                     <PasswordBox x:Name="ReenterPasswordBox" PlaceholderText="Password again..." Margin="0,0,0,9"/>
@@ -52,8 +52,8 @@
             </StackPanel>
 
         </Grid>
-        <ProgressRing x:Name="ProgressRing" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsActive="False" Foreground="#FF73C1FF" MaxHeight="100" MaxWidth="100"/>
-        <TextBlock Grid.Row="1"  x:Name="Copyright" Text="Copyright (C) 2016 Antosoft Sp. z o.o." VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12" Margin="0,0,0,3"/>
+        <ProgressRing x:Name="ProgressRing" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsActive="False" Foreground="#FF73C1FF" MaxHeight="100" MaxWidth="100"/>
+        <TextBlock Grid.Row="1"  x:Name="Copyright" Text="{Binding Email}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12" Margin="0,0,0,3"/>
     </Grid>
 </views:MvxWindowsPage>
 

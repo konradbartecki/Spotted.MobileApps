@@ -60,6 +60,14 @@
       <Project>{e8b73224-39e8-4290-9693-14d70aeb3ce2}</Project>
       <Name>Spotted.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Spotted.MobileServiceProxy\Spotted.MobileServiceProxy.csproj">
+      <Project>{0C9AAD9C-6EA5-41E3-82A8-076D5596143C}</Project>
+      <Name>Spotted.MobileServiceProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spotted.Model\Spotted.Model.csproj">
+      <Project>{8ABDB496-C6A0-4935-BBF4-E784F4C7B3D2}</Project>
+      <Name>Spotted.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

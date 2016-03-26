@@ -11,7 +11,7 @@ namespace Spotted.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.LoginViewModel>();
+            RegisterAppStart<ViewModels.LoginRegisterViewModel>();
         }
     }
 }

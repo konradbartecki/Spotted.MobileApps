@@ -1,29 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Threading.Tasks;
 using Windows.System;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using MvvmCross.WindowsUWP.Views;
-using Spotted.Core;
-using Spotted.Core.Model.Exceptions;
-using Spotted.Core.Model.ServiceRequests;
-using Spotted.UWP.Views;
+using Spotted.Core.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace Spotted.UWP
+namespace Spotted.UWP.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -31,6 +15,13 @@ namespace Spotted.UWP
     public sealed partial class LoginView : MvxWindowsPage
     {
         private bool RegisterModeEnabled = false;
+
+        public new LoginRegisterViewModel ViewModel
+        {
+            get { return (LoginRegisterViewModel)base.ViewModel; }
+            set { base.ViewModel = value; }
+        }
+
         public LoginView()
         {
             this.InitializeComponent();
@@ -69,28 +60,7 @@ namespace Spotted.UWP
                 Login.IsEnabled = false;
                 ProgressRing.IsActive = true;
 
-                using (var service = Config.GetMobileService())
-                {
-
-                    if (RegisterModeEnabled == false)
-                    {
-                        var token = await service.Login(new LoginRequest()
-                        {
-                            Email = EmailBox.Text,
-                            Password = PasswordBox.Password
-                        });
-                        service.AccessToken = token;
-                        await new MessageDialog(service.AccessToken).ShowAsync();
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-            }
-            catch (ModelInvalidException ex)
-            {
-                await new MessageDialog(ex.ToString()).ShowAsync();
+                await ViewModel.LoginAsync();
             }
             finally
             {
@@ -116,7 +86,7 @@ namespace Spotted.UWP
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof (MainView));
+            //Frame.Navigate(typeof (MainView));
         }
     }
 }

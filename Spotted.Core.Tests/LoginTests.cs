@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spotted.Core.Model.Exceptions;
-using Spotted.Core.Model.ServiceRequests;
+using Spotted.Model.Requests;
+using Spotted.MobileServiceProxy.Exceptions;
 
 namespace Spotted.Core.Tests
 {
