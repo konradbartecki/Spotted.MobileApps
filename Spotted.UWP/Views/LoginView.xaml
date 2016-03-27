@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <Image Grid.RowSpan="2" Source="ms-appx:///Assets/Spotted/bg.jpg" Margin="0" MinHeight="150" Stretch="UniformToFill" Opacity="0.4" RenderTransformOrigin="0.5,0.5" NineGrid="0"/>
         <Grid Grid.Row="0">
-            <Image Source="ms-appx:///Assets/Spotted/ikona2.png" Margin="0" Width="220" Height="220" MaxWidth="220" MaxHeight="217" Opacity="0.95" RenderTransformOrigin="0.5,0.5" Tapped="Image_Tapped" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Source="ms-appx:///Assets/Spotted/ikona_color.png" Margin="0" Width="220" Height="220" MaxWidth="220" MaxHeight="217" Opacity="0.95" RenderTransformOrigin="0.5,0.5" Tapped="Image_Tapped" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Height="100" VerticalAlignment="Top" Background="#7F000000" Visibility="Collapsed">
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="15" FontFamily="Segoe UI Light" FontSize="34.667">
                 	<Run Text="Spotted"/>
@@ -46,10 +46,20 @@
                 </StackPanel>
                 <Button x:Name="Login" Content="{Binding MainActionText, FallbackValue=Login}" HorizontalAlignment="Stretch" Margin="0,0,0,9" Click="Login_Click" FontWeight="Bold" FontSize="17.333">
                     <Button.Background>
-                        <SolidColorBrush Color="{StaticResource GreenAction}"/>
+                        <SolidColorBrush Color="{StaticResource SpottedGreen}"/>
                     </Button.Background>
                 </Button>
-                <HyperlinkButton x:Name="SwitchAction" Content="{Binding SwitchModeText, FallbackValue=Sign up instead}" HorizontalAlignment="Center" Margin="0,0,0,9" Click="SwitchAction_Click" Foreground="#FF16C0FF" FontSize="17.333" FontWeight="Bold"/>
+                <HyperlinkButton x:Name="SwitchAction" 
+                                 Content="{Binding SwitchModeText, FallbackValue=Sign up instead}" 
+                                 HorizontalAlignment="Center" 
+                                 Margin="0,0,0,9" 
+                                 Click="SwitchAction_Click"
+                                 FontSize="17.333" 
+                                 FontWeight="Bold">
+                    <HyperlinkButton.Foreground>
+                        <SolidColorBrush Color="{StaticResource SpottedBlue}"/>
+                    </HyperlinkButton.Foreground>
+                </HyperlinkButton>
             </StackPanel>
 
         </Grid>

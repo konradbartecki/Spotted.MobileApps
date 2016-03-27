@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MvvmCross.Core.ViewModels;
 
-namespace Spotted.Core.Tests
+namespace Spotted.Core.ViewModels
 {
-    [TestClass]
-    public class PostTests
+    public class FeedViewModel : MvxViewModel
     {
     }
 }

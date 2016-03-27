@@ -118,6 +118,7 @@
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\Spotted\bg.jpg" />
+    <Content Include="Assets\Spotted\ikona_color.png" />
     <Content Include="Assets\Spotted\ikona2.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -137,6 +138,10 @@
     <Page Include="Controls\NavBarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\SplitViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FeedView.xaml">
       <SubType>Designer</SubType>

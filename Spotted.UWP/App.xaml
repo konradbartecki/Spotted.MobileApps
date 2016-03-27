@@ -7,8 +7,22 @@
     xmlns:converters="using:Spotted.UWP.Converters"
     RequestedTheme="Light">
     <Application.Resources>
-        <Color x:Key="GreenAction">#FF33AE4A</Color>
         <converters:MvxVisibilityConverter x:Name="MvxVisibilityConverter"/>
+        <ResourceDictionary x:Key="SplitViewStyles">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/SplitViewStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+
+        <Color x:Key="SpottedDark">#221f1f</Color>
+        <Color x:Key="SpottedLight">#f5f5f5</Color>
+        <Color x:Key="SpottedGrey">#bdbdbd</Color>
+        <Color x:Key="SpottedLightGrey">#e0e0e0</Color>
+        <Color x:Key="SpottedBlue">#42a5f5</Color>
+        <Color x:Key="SpottedLightBlue">#42CCF5</Color>
+        <Color x:Key="SpottedGreen">#33ae4a</Color>
+        <Color x:Key="SpottedRed">#e53935</Color>
     </Application.Resources>
 
 

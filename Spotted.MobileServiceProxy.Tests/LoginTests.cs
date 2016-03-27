@@ -2,10 +2,11 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spotted.Model.Requests;
+using Spotted.Core;
 using Spotted.MobileServiceProxy.Exceptions;
+using Spotted.Model.Requests;
 
-namespace Spotted.Core.Tests
+namespace Spotted.MobileServiceProxy.Tests
 {
     [TestClass]
     public class LoginTests

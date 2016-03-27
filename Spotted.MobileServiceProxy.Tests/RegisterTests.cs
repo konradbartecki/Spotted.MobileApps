@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spotted.Model.Entities;
+using Spotted.Core;
 using Spotted.Model.Enums;
 using Spotted.Model.Requests;
 
-namespace Spotted.Core.Tests
+namespace Spotted.MobileServiceProxy.Tests
 {
     [TestClass]
     public class RegisterTests
@@ -27,13 +27,24 @@ namespace Spotted.Core.Tests
         }
 
         [TestMethod]
-        public async Task<RegisterRequest> RegisterNewAccount()
+        public async Task RegisterNewAccount(RegisterRequest account = null)
+        {
+            using (var service = Config.GetMobileService())
+            {
+                account = account ?? GetRandomRegisterRequest();
+                await service.Register(account);
+            }
+        }
+
+        [TestMethod]
+        public async Task RegisterAndLogin()
         {
             using (var service = Config.GetMobileService())
             {
                 var freshAccount = GetRandomRegisterRequest();
-                await service.Register(freshAccount);
-                return freshAccount;
+                await RegisterNewAccount(freshAccount);
+                string token = await service.Login(new LoginRequest(freshAccount.Email, freshAccount.Password));
+                Assert.IsFalse(string.IsNullOrWhiteSpace(token));
             }
         }
 
