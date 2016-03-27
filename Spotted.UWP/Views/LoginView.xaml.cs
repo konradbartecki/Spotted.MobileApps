@@ -14,8 +14,6 @@ namespace Spotted.UWP.Views
     /// </summary>
     public sealed partial class LoginView : MvxWindowsPage
     {
-        private bool RegisterModeEnabled = false;
-
         public new LoginRegisterViewModel ViewModel
         {
             get { return (LoginRegisterViewModel)base.ViewModel; }
@@ -69,11 +67,6 @@ namespace Spotted.UWP.Views
         {
             if (e.Key == VirtualKey.Enter)
                 PasswordBox.Focus(FocusState.Keyboard);
-        }
-
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            //Frame.Navigate(typeof (MainView));
         }
     }
 }

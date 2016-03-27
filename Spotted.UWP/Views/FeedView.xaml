@@ -46,7 +46,7 @@
 
                 <!-- New post button -->
                 <RadioButton Grid.Row="4" Tag="" Content="New post"
-                Style="{StaticResource SplitViewNavButtonStyle}"/>
+                Style="{StaticResource ActionSplitViewButtonStyle}"/>
 
                 <!-- Settings button -->
                 <RadioButton Grid.Row="5" Tag="" Content="Settings"
