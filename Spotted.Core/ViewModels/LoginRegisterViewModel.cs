@@ -102,7 +102,7 @@ namespace Spotted.Core.ViewModels
                     return;
             if(await LoginAsync())
                 //On login success
-                ShowViewModel<FeedViewModel>();
+                ShowViewModel<MainViewModel>();
         }
 
         private async Task<bool> LoginAsync()

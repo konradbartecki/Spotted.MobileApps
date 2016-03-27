@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spotted.Core;
+using Spotted.MobileServiceProxy.Exceptions;
 using Spotted.Model.Enums;
 using Spotted.Model.Requests;
 
@@ -45,6 +46,36 @@ namespace Spotted.MobileServiceProxy.Tests
                 await RegisterNewAccount(freshAccount);
                 string token = await service.Login(new LoginRequest(freshAccount.Email, freshAccount.Password));
                 Assert.IsFalse(string.IsNullOrWhiteSpace(token));
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AccountAlreadyRegisteredException))]
+        public async Task Register_AccountExists()
+        {
+            var freshAccount = GetRandomRegisterRequest();
+            await RegisterNewAccount(freshAccount);
+            await RegisterNewAccount(freshAccount);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(LoginFailedException))]
+        public async Task Register_AccountExists_ReplaceAccount()
+        {
+            var freshAccount = GetRandomRegisterRequest();
+            await RegisterNewAccount(freshAccount);
+            freshAccount.Password = Guid.NewGuid().ToString();
+            try
+            {
+                await RegisterNewAccount(freshAccount);
+            }
+            catch
+            {
+            }
+
+            using (var service = Config.GetMobileService())
+            {
+                await service.Login(new LoginRequest(freshAccount.Email, freshAccount.Password));
             }
         }
 

@@ -7,55 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:MvvmCross.WindowsUWP.Views"
     mc:Ignorable="d">
-    <views:MvxWindowsPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Styles/SplitViewStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </views:MvxWindowsPage.Resources>
-    
-    <SplitView 
-        x:Name="ShellSplitView"
-        DisplayMode="CompactOverlay"
-        IsPaneOpen="False" 
-        CompactPaneLength="48" 
-        OpenPaneLength="200" 
-        PaneBackground="Black">
-        <SplitView.Pane>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <!-- Menu (hamburger) button -->
-                <RadioButton Style="{StaticResource SplitViewMenuButtonStyle}" Click="MenuButtonClicked"/>
 
-                <!-- Home button -->
-                <RadioButton Grid.Row="1" Tag="" Content="Home"
-                Style="{StaticResource SplitViewNavButtonStyle}" IsChecked="True"/>
-
-                <!-- Search button -->
-                <RadioButton Grid.Row="2" Tag="" Content="Search"
-                Style="{StaticResource SplitViewNavButtonStyle}"/>
-
-                <!-- New post button -->
-                <RadioButton Grid.Row="4" Tag="" Content="New post"
-                Style="{StaticResource ActionSplitViewButtonStyle}"/>
-
-                <!-- Settings button -->
-                <RadioButton Grid.Row="5" Tag="" Content="Settings"
-                Style="{StaticResource SplitViewNavButtonStyle}"/>
-
-                <!-- About button -->
-                <RadioButton Grid.Row="6" Tag="" Content="Profile"
-                Style="{StaticResource SplitViewNavButtonStyle}"/>
-            </Grid>
-        </SplitView.Pane>
-    </SplitView>
+    <Grid Background="#FFC29898">
+        <ListView 
+            ItemsSource="{Binding Posts}"
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="White" Margin="10,0,10,10">
+                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </views:MvxWindowsPage>
+

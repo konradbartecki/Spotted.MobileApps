@@ -1,0 +1,51 @@
+﻿<views:MvxWindowsPage
+    x:Class="Spotted.UWP.Views.FinderView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Spotted.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:MvvmCross.WindowsUWP.Views"
+    mc:Ignorable="d">
+
+    <StackPanel Margin="20,20,20,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <AutoSuggestBox  PlaceholderText="Find..."/>
+            <HyperlinkButton Grid.Column="1" HorizontalAlignment="Center" Margin="9,0">
+                <HyperlinkButton.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="" FontFamily="{StaticResource SymbolThemeFontFamily}"/>
+                    </StackPanel>
+                </HyperlinkButton.Content>
+            </HyperlinkButton>
+        </Grid>
+        <Grid Margin="0,9,0,0">
+            <Grid HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <HyperlinkButton Margin="0,0,9,0">
+                        <HyperlinkButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="" FontFamily="{StaticResource SymbolThemeFontFamily}" Margin="0,0,6,0"/>
+                                <TextBlock Text="Łęczna"/>
+                            </StackPanel>
+                        </HyperlinkButton.Content>
+                    </HyperlinkButton>
+                    <HyperlinkButton>
+                        <HyperlinkButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="" FontFamily="{StaticResource SymbolThemeFontFamily}" Margin="9,0,6,0"/>
+                                <TextBlock Text="Now"/>
+                            </StackPanel>
+                        </HyperlinkButton.Content>
+                    </HyperlinkButton>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+    </StackPanel>
+</views:MvxWindowsPage>
+

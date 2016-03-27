@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MvvmCross.Core.ViewModels;
 using MvvmCross.WindowsUWP.Views;
 using Spotted.Core.ViewModels;
 
@@ -24,23 +23,17 @@ namespace Spotted.UWP.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     [MvxRegion("MainContent")]
-    public sealed partial class FeedView : MvxWindowsPage
+    public sealed partial class FinderView : MvxWindowsPage
     {
-        public FeedView()
+        public FinderView()
         {
             this.InitializeComponent();
         }
 
-        public new FeedViewModel ViewModel
+        public new FinderViewModel ViewModel
         {
-            get { return (FeedViewModel)base.ViewModel; }
+            get { return (FinderViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
-        }
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            await ViewModel.DownloadPosts();
         }
     }
 }

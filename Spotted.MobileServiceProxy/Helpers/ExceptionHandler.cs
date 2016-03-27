@@ -20,8 +20,8 @@ namespace Spotted.MobileServiceProxy.Helpers
                 //    break;
                 case ApiErrors.LoginFailed:
                     return new LoginFailedException(errorResponse.status.ToString());
-                //case CustomErrors.EmailExists:
-                //    break;
+                case ApiErrors.EmailExists:
+                    return new AccountAlreadyRegisteredException(errorResponse.ToString());
                 default:
                     return new MobileServiceException(response);
             }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -8,6 +10,7 @@ using Spotted.MobileServiceProxy.Helpers;
 using Spotted.Model.Requests;
 using Spotted.Model.Responses;
 using Spotted.MobileServiceProxy.Extensions;
+using Spotted.Model.Entities;
 using Spotted.Model.Interfaces;
 
 namespace Spotted.MobileServiceProxy
@@ -30,7 +33,7 @@ namespace Spotted.MobileServiceProxy
 
             internal static class PostsController
             {
-                
+                internal static readonly string Name = "posts";
             }
         }
 
@@ -68,7 +71,9 @@ namespace Spotted.MobileServiceProxy
         {
             if (accessToken != null)
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                if (client.DefaultRequestHeaders.Contains("x-access-token"))
+                    client.DefaultRequestHeaders.Remove("x-access-token");
+                client.DefaultRequestHeaders.Add("x-access-token", accessToken);
             }
             else
             {
@@ -76,7 +81,7 @@ namespace Spotted.MobileServiceProxy
             }
         }
 
-        private string Url(string controller, string action)
+        private string Url(string controller, string action = "")
         {
             return string.Format("/api/v1/{0}/{1}", controller, action);
         }
@@ -90,12 +95,18 @@ namespace Spotted.MobileServiceProxy
         public async Task<string> Login(LoginRequest request)
         {
             var response = await PostAsync<TokenResponse>(Url(Names.AuthController.Name, Names.AuthController.LoginAction), request);
+            this.AccessToken = response.Token;
             return response.Token;
         }
 
         public async Task Register(RegisterRequest request)
         {
             await PostAsync(Url(Names.AuthController.Name, Names.AuthController.RegisterAction), request);
+        }
+
+        public async Task<List<Post>> GetPosts()
+        {
+            return await GetAsync<List<Post>>(Url(Names.PostsController.Name));
         }
     
         private async Task<T> GetAsync<T>(string url)

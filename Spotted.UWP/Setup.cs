@@ -4,6 +4,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Core;
 using MvvmCross.WindowsUWP.Platform;
+using MvvmCross.WindowsUWP.Views;
 using Spotted.Core.Services;
 using Spotted.UWP.Services;
 
@@ -25,6 +26,11 @@ namespace Spotted.UWP
             base.InitializeLastChance();
 
             Mvx.RegisterSingleton<IUserNotificationService>(new UwpUserNotificationService());
+        }
+
+        protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
+        {
+            return new MvxWindowsMultiRegionViewPresenter(rootFrame);
         }
     }
 }
