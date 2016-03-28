@@ -8,19 +8,58 @@
     xmlns:views="using:MvvmCross.WindowsUWP.Views"
     mc:Ignorable="d">
 
-    <Grid Background="#FFC29898">
-        <ListView 
+
+    <Grid Background="White" >
+        <GridView 
             ItemsSource="{Binding Posts}"
             HorizontalAlignment="Stretch" 
-            VerticalAlignment="Stretch">
-            <ListView.ItemTemplate>
+            VerticalAlignment="Stretch"
+            SelectionMode="None"
+            MaxWidth="550" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+           >
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+
+            <GridView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Background="White" Margin="10,0,10,10">
-                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
-                    </StackPanel>
+                    <Grid Margin="10" Padding="10" Background="White" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="ms-appx:///Assets/Square44x44Logo.png" Width="40" HorizontalAlignment="Left" Margin="0,0,6,0"/>
+                                <Grid Grid.Column="1"  VerticalAlignment="Top">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <HyperlinkButton Content="Łęczna" Margin="0,-6,0,-3"/>
+                                    <TextBlock Grid.Row="1" Text="2 godziny temu" Style="{StaticResource CaptionTextBlockStyle}"/>
+                                </Grid>
+                            </Grid>
+
+                        </Grid>
+                        <TextBlock Grid.Row="1" Text="{Binding Description, FallbackValue=Tetsetset_teststsetsetse_Tsesttsetsetse_Testetsetseste_tesstetsetse_STetsestetse_tsesteste_st}" 
+                                   TextWrapping="Wrap"
+                                   Style="{StaticResource BodyTextBlockStyle}" Margin="0,6,0,0"/>
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </views:MvxWindowsPage>
 
