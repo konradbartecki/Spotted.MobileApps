@@ -32,6 +32,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!-- Menu (hamburger) button -->
                 <RadioButton Style="{StaticResource SplitViewMenuButtonStyle}" 
@@ -46,15 +47,23 @@
                 Style="{StaticResource SplitViewNavButtonStyle}" Click="SearchButtonClicked"/>
 
                 <!-- New post button -->
-                <RadioButton Grid.Row="4" Tag="" Content="New post"
+                <RadioButton Grid.Row="4" Tag="" Content="Refresh"
                 Style="{StaticResource ActionSplitViewButtonStyle}"/>
 
-                <!-- Profile button -->
-                <RadioButton Grid.Row="5" Tag="" Content="Profile"
-                Style="{StaticResource SplitViewNavButtonStyle}"/>
+                <!-- New post button -->
+                <RadioButton Grid.Row="5" Tag="" Content="New post"
+                Style="{StaticResource ActionSplitViewButtonStyle}">
+                    <RadioButton.Foreground>
+                        <SolidColorBrush Color="{StaticResource SpottedGreen}"/>
+                    </RadioButton.Foreground>
+                </RadioButton>
 
+                <!-- Profile button -->
+                <RadioButton Grid.Row="6" Tag="" Content="Profile"
+                Style="{StaticResource SplitViewNavButtonStyle}"/>
+                
                 <!-- Settings button -->
-                <RadioButton Grid.Row="6" Tag="" Content="Settings"
+                <RadioButton Grid.Row="7" Tag="" Content="Settings"
                 Style="{StaticResource SplitViewNavButtonStyle}"/>
 
 
