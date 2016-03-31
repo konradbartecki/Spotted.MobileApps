@@ -34,9 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\BasicGroup.cs" />
+    <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Enums\ApiErrors.cs" />
     <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Interfaces\IGeolocated.cs" />
     <Compile Include="ModelValidator.cs" />
     <Compile Include="Enums\ModelError.cs" />
     <Compile Include="Exceptions\ModelInvalidException.cs" />

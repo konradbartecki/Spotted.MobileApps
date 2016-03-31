@@ -100,9 +100,16 @@ namespace Spotted.Core.ViewModels
             if (_inRegisterMode)
                 if (await RegisterAsync() == false)
                     return;
-            if(await LoginAsync())
+            if (await LoginAsync())
+            {
                 //On login success
                 ShowViewModel<MainViewModel>();
+                using (var service = Config.GetMobileService())
+                {
+                    SpottedCache.Groups = await service.GetGroups();
+                }
+            }
+
         }
 
         private async Task<bool> LoginAsync()
@@ -123,7 +130,7 @@ namespace Spotted.Core.ViewModels
             }
             catch (Exception e)
             {
-                ExceptionHandler.Handle(e);
+                await ExceptionHandler.Handle(e);
             }
             return false;
         }
@@ -149,7 +156,7 @@ namespace Spotted.Core.ViewModels
             }
             catch (Exception e)
             {
-                ExceptionHandler.Handle(e);
+                await ExceptionHandler.Handle(e);
             }
             return false;
         }

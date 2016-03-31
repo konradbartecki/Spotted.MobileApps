@@ -14,7 +14,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </views:MvxWindowsPage.Resources>
-    
     <SplitView 
         x:Name="ShellSplitView"
         DisplayMode="CompactOverlay"
@@ -22,10 +21,52 @@
         CompactPaneLength="48" 
         OpenPaneLength="200" 
         PaneBackground="Black">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Small">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="240" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ShellSplitView.IsPaneOpen" Value="False" />
+                        <Setter Target="ShellSplitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="HamburgerButton.Visibility" Value="Collapsed"/>
+                        <Setter Target="HamburgerButtonRow.Height" Value="0"/>
+                        <Setter Target="TopPanel.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ShellSplitView.IsPaneOpen" Value="False" />
+                        <Setter Target="ShellSplitView.DisplayMode" Value="CompactOverlay" />
+                        <Setter Target="HamburgerButtonRow.Height" Value="48"/>
+                        <Setter Target="HamburgerButton.Visibility" Value="Visible"/>
+                        <Setter Target="TopPanel.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Large">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ShellSplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="ShellSplitView.DisplayMode" Value="Inline" />
+                        <Setter Target="HamburgerButtonRow.Height" Value="0"/>
+                        <Setter Target="HamburgerButton.Visibility" Value="Collapsed"/>
+                        <Setter Target="TopPanel.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <SplitView.Pane>
+            
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="48" x:Name="HamburgerButtonRow"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -35,8 +76,8 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!-- Menu (hamburger) button -->
-                <RadioButton Style="{StaticResource SplitViewMenuButtonStyle}" 
-                             Content="Spotted"  Click="MenuButtonClicked"/>
+                <RadioButton x:Name="HamburgerButton" Style="{StaticResource SplitViewMenuButtonStyle}" 
+                             Content="Spotted"  Click="MenuButtonClicked" Visibility="Visible"/>
 
                 <!-- Home button -->
                 <RadioButton Grid.Row="1" Tag="" Content="Home"
@@ -70,17 +111,37 @@
             </Grid>
         </SplitView.Pane>
         <SplitView.Content>
-            <Frame x:Name="MainContent">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition>
-                            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                                <EntranceNavigationTransitionInfo />
-                            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                        </NavigationThemeTransition>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="TopPanel" Height="48" Background="Black">
+                    <Button Foreground="White" Width="48" Height="48" Click="MenuButtonClicked">
+                        <Button.Content>
+                            <TextBlock Text="&#xe700;" Style="{StaticResource SplitViewTextBlockStyle}" FontSize="{StaticResource SplitViewLargeNavFontSize}"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Foreground="White" Width="48" Height="48" HorizontalAlignment="Right">
+                        <Button.Content>
+                            <TextBlock Text="" Style="{StaticResource SplitViewTextBlockStyle}" FontSize="{StaticResource SplitViewLargeNavFontSize}"/>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+
+                <Frame x:Name="MainContent" Grid.Row="1">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition>
+                                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                    <EntranceNavigationTransitionInfo />
+                                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                            </NavigationThemeTransition>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </Grid>
+            
         </SplitView.Content>
     </SplitView>
 </views:MvxWindowsPage>

@@ -308,6 +308,7 @@
         </Setter>
     </Style>
 
+
     <Style TargetType="RadioButton" x:Key="ActionSplitViewButtonStyle">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{ThemeResource SplitViewForegroundBrush}" />

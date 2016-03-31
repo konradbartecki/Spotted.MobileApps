@@ -50,6 +50,7 @@
     <Compile Include="Helpers\ExceptionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IUserNotificationService.cs" />
+    <Compile Include="SpottedCache.cs" />
     <Compile Include="ViewModels\FeedViewModel.cs" />
     <Compile Include="ViewModels\FinderViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

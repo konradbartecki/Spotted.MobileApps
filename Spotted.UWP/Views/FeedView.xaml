@@ -47,8 +47,8 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    <HyperlinkButton Content="Łęczna" Margin="0,-6,0,-3"/>
-                                    <TextBlock Grid.Row="1" Text="2 godziny temu" Style="{StaticResource CaptionTextBlockStyle}"/>
+                                    <HyperlinkButton Content="{Binding Group}" Margin="0,-6,0,-3"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Created}" Style="{StaticResource CaptionTextBlockStyle}"/>
                                 </Grid>
                             </Grid>
 

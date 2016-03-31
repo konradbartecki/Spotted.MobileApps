@@ -35,6 +35,11 @@ namespace Spotted.MobileServiceProxy
             {
                 internal static readonly string Name = "posts";
             }
+
+            internal static class GroupsController
+            {
+                internal static readonly string Name = "groups";
+            }
         }
 
         private readonly string _address;
@@ -107,6 +112,11 @@ namespace Spotted.MobileServiceProxy
         public async Task<List<Post>> GetPosts()
         {
             return await GetAsync<List<Post>>(Url(Names.PostsController.Name));
+        }
+
+        public async Task<List<BasicGroup>> GetGroups()
+        {
+            return await GetAsync<List<BasicGroup>>(Url(Names.GroupsController.Name));
         }
     
         private async Task<T> GetAsync<T>(string url)

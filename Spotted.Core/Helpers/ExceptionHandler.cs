@@ -13,7 +13,7 @@ namespace Spotted.Core.Helpers
 {
     internal static class ExceptionHandler
     {
-        public static void Handle(Exception ex)
+        public static async Task Handle(Exception ex)
         {
             var notifier = Mvx.Resolve<IUserNotificationService>();
 

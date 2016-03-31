@@ -30,13 +30,30 @@ namespace Spotted.Core.ViewModels
             {
                 using (var service = Config.GetMobileService())
                 {
-                    var data = await service.GetPosts();
-                    Posts = new ObservableCollection<Post>(data);
+                    var posts = await service.GetPosts();
+                    foreach (var post in posts)
+                    {
+                        var foundGroup = SpottedCache.Groups.FirstOrDefault(x => x.Id == post.Group?.Id);
+                        if (foundGroup == null)
+                        {
+                            post.Group = new BasicGroup()
+                            {
+                                Name = "Global"
+                            };
+                        }
+                        else
+                        {
+                            post.Group = foundGroup;
+                        }
+                    }
+
+                    posts = posts.OrderByDescending(x => x.Created).ToList();
+                    Posts = new ObservableCollection<Post>(posts);
                 }
             }
             catch (Exception e)
             {
-                ExceptionHandler.Handle(e);
+                await ExceptionHandler.Handle(e);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Spotted.Core
         }
         public static class MobileService
         {
-            public static string Address = "http://46.101.158.111:3000/";
+            public static string Address = "http://spotted.city/";
             public static string ApiVersion = "v1";
         }
     }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Spotted.Model.Enums;
 
 namespace Spotted.Model.Entities
