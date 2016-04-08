@@ -25,17 +25,12 @@ namespace Spotted.UWP.Views
             this.InitializeComponent();
         }
 
-        private void SwitchAction_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SwitchMode();
+            LoginOrRegister();
         }
 
-        private async void Login_Click(object sender, RoutedEventArgs e)
-        {
-            await LoginOrRegister();
-        }
-
-        private async Task LoginOrRegister()
+        private void LoginOrRegister()
         {
             try
             {
@@ -45,7 +40,7 @@ namespace Spotted.UWP.Views
                 Login.IsEnabled = false;
                 ProgressRing.IsActive = true;
 
-                await ViewModel.MainActionAsync();
+                ViewModel.MainActionCommand.Execute(null);
             }
             finally
             {
@@ -57,10 +52,10 @@ namespace Spotted.UWP.Views
             }
         }
 
-        private async void PasswordBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        private void PasswordBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
-                await LoginOrRegister();
+                LoginOrRegister();
         }
 
         private void EmailBox_OnKeyUp(object sender, KeyRoutedEventArgs e)

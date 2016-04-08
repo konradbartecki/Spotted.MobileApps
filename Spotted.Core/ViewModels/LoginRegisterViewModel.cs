@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.UI;
 using Spotted.Core.Helpers;
@@ -15,6 +16,9 @@ namespace Spotted.Core.ViewModels
     public class LoginRegisterViewModel : MvxViewModel
     {
         #region Default UI labels values
+
+        //TODO: Use resources
+
         private static readonly string _loginText = "Login";
         private static readonly string _registerText = "Register";
         private static readonly string _switchToLogin = "Login using your account";
@@ -30,11 +34,10 @@ namespace Spotted.Core.ViewModels
         private string _email;
         private string _password;
         private string _reenteredPassword;
-        private Gender _selectedGender;
         private bool _inRegisterMode = false;
-        private MvxVisibility _registerModeVisibility;
-        private string _mainActionText;
-        private string _switchModeText;
+        private MvxVisibility _registerModeVisibility = MvxVisibility.Collapsed;
+        private string _mainActionText = _loginText;
+        private string _switchModeText = _switchToRegister;
         #endregion
 
         #region Full properties
@@ -65,15 +68,6 @@ namespace Spotted.Core.ViewModels
                 RaisePropertyChanged(() => ReenteredPassword);
             }
         }
-        public Gender SelectedGender
-        {
-            get { return _selectedGender; }
-            set
-            {
-                _selectedGender = value;
-                RaisePropertyChanged(() => SelectedGender);
-            }
-        }
         public MvxVisibility RegisterModeVisibility
         {
             get { return _registerModeVisibility; }
@@ -85,17 +79,13 @@ namespace Spotted.Core.ViewModels
         }
         #endregion
 
-        public LoginRegisterViewModel()
-        {
-            _registerModeVisibility = MvxVisibility.Collapsed;
-            _mainActionText = _loginText;
-            _switchModeText = _switchToRegister;
-        }
+        public ICommand MainActionCommand => new MvxCommand(async () => await MainActionAsync());
+        public ICommand SwitchModeCommand => new MvxCommand(SwitchMode);
 
         /// <summary>
         /// Logs or register a user based on an action
         /// </summary>
-        public async Task MainActionAsync()
+        private async Task MainActionAsync()
         {
             if (_inRegisterMode)
                 if (await RegisterAsync() == false)
@@ -161,7 +151,7 @@ namespace Spotted.Core.ViewModels
             return false;
         }
 
-        public void SwitchMode()
+        private void SwitchMode()
         {
             _inRegisterMode = !_inRegisterMode;
             RegisterModeVisibility = _inRegisterMode ? MvxVisibility.Visible : MvxVisibility.Collapsed;

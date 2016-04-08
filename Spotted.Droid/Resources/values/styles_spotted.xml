@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="AutoCompleteTextViewSpotted" parent="android:Widget.Holo.AutoCompleteTextView">
+      <item name="android:dropDownSelector">@drawable/spotted_list_selector_holo_dark</item>
+	    <item name="android:background">@drawable/spotted_edit_text_holo_dark</item>
+  </style>
+
+  <style name="ButtonSpotted" parent="android:Widget.Holo.Button">
+	  <item name="android:background">@drawable/spotted_btn_default_holo_dark</item>
+  </style>
+
+  <style name="spotted_edit_text" parent="@android:style/Widget.EditText">
+    <item name="android:textColorHint">#d9d9d9</item>
+  </style>
+
+  <style name="ImageButtonSpotted" parent="android:Widget.Holo.ImageButton">
+	  <item name="android:background">@drawable/spotted_btn_default_holo_dark</item>
+  </style>
+
+  <style name="SpinnerSpotted" parent="android:Widget.Holo.Spinner">
+      <item name="android:background">@drawable/spotted_spinner_background_holo_dark</item>
+      <item name="android:dropDownSelector">@drawable/spotted_list_selector_holo_dark</item>
+  </style>
+
+  <style name="TabSpotted">
+      <item name="android:gravity">center_horizontal</item>
+      <item name="android:paddingLeft">16dip</item>
+      <item name="android:paddingRight">16dip</item>
+      <item name="android:background">@drawable/spotted_tab_indicator_holo</item>
+      <item name="android:layout_width">0dip</item>
+      <item name="android:layout_weight">1</item>
+      <item name="android:minWidth">80dip</item>
+  </style>
+
+  <style name="TabTextSpotted">
+	  <item name="android:textColor">#ffffff</item>
+      <item name="android:textSize">12sp</item>
+      <item name="android:textStyle">bold</item>
+      <!-- v14 <item name="android:textAllCaps">true</item> -->
+      <item name="android:ellipsize">marquee</item>
+      <item name="android:maxLines">2</item>
+      <item name="android:maxWidth">180dip</item>
+  </style>
+
+  <style name="ProgressBarSpotted" parent="android:Widget.Holo.ProgressBar.Horizontal">
+      <item name="android:progressDrawable">@drawable/spotted_progress_horizontal_holo_dark</item>
+      <item name="android:indeterminateDrawable">@drawable/spotted_progress_indeterminate_horizontal_holo_dark</item>
+  </style>
+
+  <style name="SeekBarSpotted" parent="android:Widget.Holo.SeekBar">
+      <item name="android:progressDrawable">@drawable/spotted_scrubber_progress_horizontal_holo_dark</item>
+      <item name="android:indeterminateDrawable">@drawable/spotted_scrubber_progress_horizontal_holo_dark</item>
+      <item name="android:thumb">@drawable/spotted_scrubber_control_selector_holo_dark</item>
+  </style>
+
+  <style name="RatingBarSpotted" parent="android:Widget.Holo.RatingBar">
+      <item name="android:progressDrawable">@drawable/spotted_ratingbar_full_holo_dark</item>
+      <item name="android:indeterminateDrawable">@drawable/spotted_ratingbar_full_holo_dark</item>
+  </style>
+
+  <style name="RatingBarBigSpotted" parent="android:Widget.Holo.RatingBar.Indicator">
+      <item name="android:progressDrawable">@drawable/spotted_ratingbar_holo_dark</item>
+      <item name="android:indeterminateDrawable">@drawable/spotted_ratingbar_holo_dark</item>
+  </style>
+
+  <style name="RatingBarSmallSpotted" parent="android:Widget.Holo.RatingBar.Small">
+      <item name="android:progressDrawable">@drawable/spotted_ratingbar_small_holo_dark</item>
+      <item name="android:indeterminateDrawable">@drawable/spotted_ratingbar_small_holo_dark</item>
+  </style>
+
+  <style name="ToggleSpotted" parent="android:Widget.Holo.Button.Toggle">
+      <item name="android:background">@drawable/spotted_btn_toggle_holo_dark</item>
+  </style>
+
+</resources>

@@ -38,7 +38,7 @@ namespace Spotted.Core.ViewModels
                         {
                             post.Group = new BasicGroup()
                             {
-                                Name = "Global"
+                                Name = "Spotted"
                             };
                         }
                         else

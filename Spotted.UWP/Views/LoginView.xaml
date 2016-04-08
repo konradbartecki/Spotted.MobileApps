@@ -48,7 +48,7 @@
                                  Content="{Binding SwitchModeText, FallbackValue=Sign up instead}" 
                                  HorizontalAlignment="Center" 
                                  Margin="0,0,0,9" 
-                                 Click="SwitchAction_Click"
+                                 Command="{Binding SwitchModeCommand}"
                                  FontSize="17.333" 
                                  FontWeight="Bold">
                     <HyperlinkButton.Foreground>

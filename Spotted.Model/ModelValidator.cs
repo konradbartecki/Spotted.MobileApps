@@ -18,7 +18,6 @@ namespace Spotted.Model
         public static void RegisterPassword(string password, string reenterPassword)
         {
             if(password != reenterPassword) throw new ModelInvalidException(ModelError.PasswordDoesNotMatch);
-
         }
     }
 }
